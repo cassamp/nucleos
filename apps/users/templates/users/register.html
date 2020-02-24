@@ -1,0 +1,21 @@
+{% extends 'users/home.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block register %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-7">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Novo Registo</h3>
+				</div>
+				<form class="form-horizontal" method="POST">
+					{% csrf_token %}
+					{{ form | crispy }}
+					<button class="btn btn-success" type="submit">Register</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock register %}

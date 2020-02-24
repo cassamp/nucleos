@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<nav class="navbar navbar-expand-sm navbar-light bg-light text-center shadow-sm">
+    <a class="navbar-brand" href="#">
+        <img src="{% static 'img/nucleos.png' %}" width="90" height="25" class="d-inline-block align-center" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Artigos
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Listagem</a>
+                    <a class="dropdown-item" href="#">Novo Produto</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Clientes
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Listagem</a>
+                    <a class="dropdown-item" href="#">Novo Cliente</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                    aria-expanded="false">
+                    Fornecedores
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Listagem</a>
+                    <a class="dropdown-item" href="#">Novo Fornecedor</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                    aria-expanded="false">
+                    Utilizador
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'register' %}">Novo Utilizador</a>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div id=register>
+    {% block register %} {% endblock register %}
+</div>
+{% endblock content %}
