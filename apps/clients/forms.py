@@ -1,35 +1,20 @@
 from django import forms
 from .models import Prefix, Country, Spouse, Client, Measurement, Company
-
-
-class PrefixForm(forms.ModelForm):
-    class Meta:
-        model = Prefix
-        fields = ['name']
-
-
-class CountryForm(forms.ModelForm):
-    class Meta:
-        model = Country
-        fields = ['code', 'name']
+from betterforms.multiform import MultiModelForm
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Fieldset, Layout, Submit
 
 
 class SpouseForm(forms.ModelForm):
     class Meta:
         model = Spouse
-        fields = ['prefix', 'name', 'birth_date',
-                  'mobile_phone', 'measurement', 'wedding_date']
+        exclude = ['measurement']
 
 
 class ClientForm(forms.ModelForm):
     class Meta:
         model = Client
-        fields = ['prefix', 'name', 'birth_date', 'mobile_phone',
-                  'measurement', 'gender', 'marital_status', 'spouse',
-                  'tax_number', 'civil_id', 'passport_id', 'phone',
-                  'other_phone_alternative', 'email', 'site', 'company',
-                  'fax', 'address', 'mailing_list', 'postal_code', 'city',
-                  'country', 'nib', 'notes', 'date_last_visit']
+        exclude = ['spouse', 'measurement', 'company']
 
 
 class MeasurementForm(forms.ModelForm):
@@ -48,3 +33,17 @@ class CompanyForm(forms.ModelForm):
         model = Company
         fields = ['name', 'address', 'phone',
                   'postal_code', 'city', 'country']
+
+
+class ClientMultiForm(MultiModelForm):
+    form_classes = {
+        'client': ClientForm,
+        'client_measurements': MeasurementForm,
+        'spouse': SpouseForm,
+        'spouse_measurements': MeasurementForm,
+        'company': CompanyForm,
+    }
+    helper = FormHelper()
+    helper.form_method = "POST"
+    helper.add_input(Submit("newclient",
+                            'Save', css_class='btn-success'))

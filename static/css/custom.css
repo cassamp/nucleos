@@ -1,27 +1,38 @@
-
 /* Write your CSS here */
 
 .jumbotron {
-    margin-bottom:0; 
-    background: #ce3537;
-    color: white;
+  margin-bottom: 0;
+  background: #ce3537;
+  color: white;
 }
 
-.navbar-nav > li{
-  padding-left:10px;
-  padding-right:10px;
+.navbar-nav>li {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 h3 {
   padding-top: 30px;
   padding-bottom: 15px;
+  padding-left: 5%;
 }
 
 p {
   padding-top: 30px;
   padding-left: 30px;
-  font-family: 'Droid Sans', sans-serif; 
-  font-size: 15px; font-weight: 400; 
-  line-height: 24px; 
-  margin: 0 0 14px; 
+  font-family: 'Droid Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0 0 14px;
+}
+
+button {
+  padding-bottom: 5%;
+  padding-right: 5%;
+}
+
+form {
+  padding-left: 10%;
+  padding-right: 10%;
 }

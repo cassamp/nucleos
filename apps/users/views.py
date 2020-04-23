@@ -4,8 +4,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, CreateView
 from .forms import SignUpForm
 
-# Create your views here.
-
 
 class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'users/home.html'
