@@ -1,6 +1,5 @@
 # -*- coding:utf-8 -*-
-from nucleos import settings
-from . import api, errors
+from invoicexpress import api, errors, settings
 import re
 from xml.parsers.expat import ExpatError
 import xml.sax.saxutils
@@ -12,7 +11,6 @@ from requests import Request, Session
 import logging
 
 log = logging.getLogger(__name__)
-
 
 ### CONFIG ###
 

@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import UpdateView, CreateView
 from .models import Client
 from .forms import ClientForm, ClientMultiForm
+from invoicexpress.services import ask_api
 
 
 class ClientCreationView(LoginRequiredMixin, CreateView):
@@ -23,6 +24,10 @@ class ClientCreationView(LoginRequiredMixin, CreateView):
         client.spouse = spouse
         client.company = company
         client.save()
+        ask_api('clients.create', {
+            'name': client.name,
+            'code': client.id,
+        })
         return redirect('home')
 
 

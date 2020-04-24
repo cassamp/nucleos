@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import invoicexpress.settings
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -148,5 +149,5 @@ except ImportError:
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'login'
 
-ACCOUNT_NAME = 'null-6'
-API_KEY = 'b0e7ece88d66d646b222874d53670fc782c79e0b'
+invoicexpress.settings.ACCOUNT_NAME = 'ulht'
+invoicexpress.settings.API_KEY = '4fdf713bdccaa9a4070fbe4356c21122b5838e8e'
