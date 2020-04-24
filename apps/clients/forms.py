@@ -2,7 +2,7 @@ from django import forms
 from .models import Prefix, Country, Spouse, Client, Measurement, Company
 from betterforms.multiform import MultiModelForm
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Fieldset, Layout, Submit
+from crispy_forms.layout import Column, Fieldset, Layout, Row, Submit
 
 
 class SpouseForm(forms.ModelForm):

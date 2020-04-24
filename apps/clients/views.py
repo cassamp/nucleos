@@ -8,25 +8,22 @@ from .forms import ClientForm, ClientMultiForm
 
 class ClientCreationView(LoginRequiredMixin, CreateView):
     form_class = ClientMultiForm
-    success_url = reverse_lazy('home')
     template_name = 'clients/create.html'
     login_url = reverse_lazy('login')
 
     def form_valid(self, form):
-        client = form['client'].save()
+        client = form['client'].save(commit=False)
         spouse = form['spouse'].save(commit=False)
-        client_measurements = form['client_measurements'].save(commit=False)
-        spouse_measurements = form['spouse_measurements'].save(commit=False)
-        company = form['company'].save(commit=False)
-        spouse.measurements = spouse_measurements
-        client.spouse = spouse
-        client.measurements = client_measurements
-        client.company = company
+        client_measurements = form['client_measurements'].save()
+        spouse_measurements = form['spouse_measurements'].save()
+        company = form['company'].save()
+        spouse.measurement = spouse_measurements
         spouse.save()
-        client_measurements.save()
-        spouse_measurements.save()
-        company.save()
-        return redirect(self.get_success_url())
+        client.measurement = client_measurements
+        client.spouse = spouse
+        client.company = company
+        client.save()
+        return redirect('home')
 
 
 """ class ClientCreationView(UpdateView):

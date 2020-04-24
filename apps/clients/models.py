@@ -42,13 +42,13 @@ class Company(models.Model):
 class Spouse(models.Model):
     prefix = models.ForeignKey(
         Prefix, blank=True, null=True, on_delete=models.PROTECT)
-    name = models.CharField(max_length=255, null=True)
-    birth_date = models.DateField(null=True)
-    mobile_phone = models.CharField(max_length=45, null=True)
+    name = models.CharField(max_length=255, null=True, blank=True)
+    birth_date = models.DateField(null=True, blank=True)
+    mobile_phone = models.CharField(max_length=45, blank=True, null=True)
     measurement = models.OneToOneField(
         'Measurement', on_delete=models.CASCADE, blank=True, null=True)
-    wedding_date = models.DateField(null=True)
-    date_created = models.DateTimeField(auto_now_add=True)
+    wedding_date = models.DateField(null=True, blank=True)
+    date_created = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -76,8 +76,8 @@ class Client(models.Model):
     ]
     marital_status = models.CharField(
         max_length=1, choices=MARITAL_STATUS_CHOICES)
-    spouse = models.OneToOneField(
-        'Spouse', on_delete=models.CASCADE, blank=True, null=True)
+    spouse = models.ForeignKey(
+        Spouse, on_delete=models.CASCADE, blank=True, null=True)
     tax_number = models.CharField(max_length=45)
     civil_id = models.CharField(max_length=45, blank=True)
     passport_id = models.CharField(max_length=45, blank=True)
@@ -102,7 +102,7 @@ class Client(models.Model):
     notes = models.CharField(max_length=1024, blank=True)
     discount = models.DecimalField(
         max_digits=15, decimal_places=2, blank=True, null=True)
-    date_last_visit = models.DateField(null=True)
+    date_last_visit = models.DateField(null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -136,4 +136,3 @@ class Measurement(models.Model):
         max_digits=15, decimal_places=2, blank=True, null=True)
     neck = models.DecimalField(
         max_digits=15, decimal_places=2, blank=True, null=True)
-
