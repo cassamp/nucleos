@@ -24,10 +24,14 @@ class ClientCreationView(LoginRequiredMixin, CreateView):
         client.spouse = spouse
         client.company = company
         client.save()
-        ask_api('clients.create', {
-            'name': client.name,
+
+        result = ask_api('clients.create', {
             'code': client.id,
+            'name': client.name,
+            'email': client.email,
+            'fiscal_id': client.fiscal_number
         })
+
         return redirect('home')
 
 

@@ -78,7 +78,7 @@ class Client(models.Model):
         max_length=1, choices=MARITAL_STATUS_CHOICES)
     spouse = models.ForeignKey(
         Spouse, on_delete=models.CASCADE, blank=True, null=True)
-    tax_number = models.CharField(max_length=45)
+    fiscal_number = models.CharField(max_length=45)
     civil_id = models.CharField(max_length=45, blank=True)
     passport_id = models.CharField(max_length=45, blank=True)
     phone = models.CharField(max_length=45, blank=True)
