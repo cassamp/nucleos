@@ -46,6 +46,7 @@ THIRD_PARTY_APPS = [
     'requests',
     'betterforms',
     'xmltodict',
+    'django_tables2',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

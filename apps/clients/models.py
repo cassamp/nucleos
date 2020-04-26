@@ -136,3 +136,6 @@ class Measurement(models.Model):
         max_digits=15, decimal_places=2, blank=True, null=True)
     neck = models.DecimalField(
         max_digits=15, decimal_places=2, blank=True, null=True)
+
+    def __str__(self):
+        return "Medida nrº" + str(self.pk)

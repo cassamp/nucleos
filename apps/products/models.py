@@ -14,6 +14,7 @@ class Country(models.Model):
 
 
 class Product(models.Model):
+    name = models.CharField(max_length=255, unique=True)
     description = models.CharField(max_length=255)
     NATURE_CHOICES = [
         ('P', 'Produto'),
@@ -51,7 +52,11 @@ class Product(models.Model):
     exemption_reason = models.CharField(
         max_length=3, choices=EXEMPTION_REASON_CHOICES)
     country = models.ForeignKey(
-        'Country', on_delete=models.CASCADE, default='PT')
-    units = models.PositiveIntegerField
-    unit_weight = models.PositiveIntegerField
+        Country, blank=True, on_delete=models.PROTECT)
+    units = models.PositiveSmallIntegerField()
+    unit_weight = models.DecimalField(
+        max_digits=15, decimal_places=2, default=False)
     pvp = models.DecimalField(max_digits=15, decimal_places=2, default=False)
+
+    def __str__(self):
+        return self.name

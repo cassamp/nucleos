@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<h3>Product Form</h3>
+<hr>
+{% csrf_token %}
+{% crispy form %}
+{% endblock content %}
