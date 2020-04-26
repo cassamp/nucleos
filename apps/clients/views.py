@@ -118,6 +118,38 @@ def invoice_receipt(request):
     return render(request, 'clients/invoice-receipt.html', {'form': form})
 
 
+def credit_note(request):
+    if request.method == 'POST':
+        form = ClientInvoiceForm(request.POST)
+        if form.is_valid():
+            client = ask_api('clients.find-by-code', {
+                'client_code': form.cleaned_data['client_id'],
+            })
+            product = ask_api('items.get', {
+                'item-id': form.cleaned_data['product_id'],
+            })
+            invoice = ask_api('credit-notes.create', {
+                'date': date.today().strftime("%d/%m/%Y"),
+                'due_date': datetime.date.today() + datetime.timedelta(days=1),
+                'client': {
+                    'name': client['client']['name'],
+                    'code': client['client']['code'],
+                },
+                'items': {'item': [
+                    {
+                        'name': product['item']['name'],
+                        'description': product['item']['description'],
+                        'unit_price': product['item']['unit_price'],
+                        'quantity': 1.0,
+                    },
+                ]},
+            })
+            return redirect('home')
+    else:
+        form = ClientInvoiceForm()
+    return render(request, 'clients/credit-note.html', {'form': form})
+
+
 """ class ClientCreationView(UpdateView):
     model = Client
     form_class = ClientMultiForm

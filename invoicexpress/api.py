@@ -56,8 +56,8 @@ method = {
         'method'	: 'POST',
         'root_tag_name': 'invoice',
     },
-    'clients.create-credit-note': {
-        'url'		: 'https://{account-name}.app.invoicexpress.com/clients/{client-id}/create/credit-note.xml',
+    'credit-notes.create': {
+        'url'		: 'https://{account-name}.app.invoicexpress.com/credit_notes.xml',
         'method'	: 'POST',
         'root_tag_name': 'credit_note',
     },
