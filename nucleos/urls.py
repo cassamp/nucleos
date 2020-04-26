@@ -3,7 +3,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import path, reverse_lazy
 from django.views.generic import TemplateView
 from apps.users.views import HomeView, SignUpView
-from apps.clients.views import ClientCreationView, ClientListView
+from apps.clients.views import ClientCreationView, ClientListView, invoice, invoice_receipt
 from apps.products.views import ProductCreationView, ProductListView
 
 urlpatterns = [
@@ -28,5 +28,9 @@ urlpatterns = [
 
     path('list/clients/', ClientListView.as_view(), name='clients'),
 
-    path('list/products/', ProductListView.as_view(), name='products')
+    path('list/products/', ProductListView.as_view(), name='products'),
+
+    path('new/invoice/', invoice, name='invoice'),
+
+    path('new/invoice-receipt/', invoice_receipt, name='invoice-receipt')
 ]

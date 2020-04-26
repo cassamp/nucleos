@@ -2,7 +2,7 @@ from django import forms
 from .models import Prefix, Country, Spouse, Client, Measurement, Company
 from betterforms.multiform import MultiModelForm
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
+from crispy_forms.layout import Column, Layout, Row, Submit
 
 
 class SpouseForm(forms.ModelForm):
@@ -47,3 +47,27 @@ class ClientMultiForm(MultiModelForm):
     helper.form_method = "POST"
     helper.add_input(Submit("newclient",
                             'Save', css_class='btn-success'))
+
+
+class ClientInvoiceForm(forms.Form):
+    client_id = forms.IntegerField(label='Client ID')
+    product_id = forms.IntegerField(label='Product InvoiceXpressID')
+
+    def clean(self):
+        cleaned_data = super(ClientInvoiceForm, self).clean()
+        client_id = cleaned_data.get('client_id')
+        product_id = cleaned_data.get('product_id')
+        if not client_id and not product_id:
+            raise forms.ValidationError('Preencha o formulário!')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Row(
+                Column('client_id', css_class='form-group col-md-6 mb-0'),
+                Column('product_id', css_class='form-group col-md-6 mb-0'),
+                css_class='form-row'
+            ),
+            Submit('submit', 'Save')
+        )

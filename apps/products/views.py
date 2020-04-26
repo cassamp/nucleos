@@ -28,7 +28,7 @@ class ProductCreationView(LoginRequiredMixin, CreateView):
         return redirect('home')
 
 
-class ProductListView(SingleTableMixin, FilterView):
+class ProductListView(LoginRequiredMixin, SingleTableMixin, FilterView):
     model = Product
     table_class = ProductTable
     template_name = 'products/list.html'
