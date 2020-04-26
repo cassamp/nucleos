@@ -18,7 +18,7 @@
                     Artigos
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Listagem</a>
+                    <a class="dropdown-item" href="{% url 'products' %}">Listagem</a>
                     <a class="dropdown-item" href="{% url 'newproduct' %}">Novo Produto</a>
                 </div>
             </li>
@@ -29,7 +29,7 @@
                     Clientes
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Listagem</a>
+                    <a class="dropdown-item" href="{% url 'clients' %}">Listagem</a>
                     <a class="dropdown-item" href="{% url 'newclient' %}">Novo Cliente</a>
                 </div>
             </li>
@@ -60,5 +60,8 @@
 </nav>
 <div id=register>
     {% block register %} {% endblock register %}
+</div>
+<div id=list>
+    {% block list %} {% endblock list %}
 </div>
 {% endblock content %}

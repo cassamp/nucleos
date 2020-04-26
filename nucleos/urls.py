@@ -3,8 +3,8 @@ from django.contrib.auth import views as auth_views
 from django.urls import path, reverse_lazy
 from django.views.generic import TemplateView
 from apps.users.views import HomeView, SignUpView
-from apps.clients.views import ClientCreationView
-from apps.products.views import ProductCreationView
+from apps.clients.views import ClientCreationView, ClientListView
+from apps.products.views import ProductCreationView, ProductListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +25,8 @@ urlpatterns = [
 
     path('new/product/', ProductCreationView.as_view(success_url=reverse_lazy('home')),
          name='newproduct'),
+
+    path('list/clients/', ClientListView.as_view(), name='clients'),
+
+    path('list/products/', ProductListView.as_view(), name='products')
 ]

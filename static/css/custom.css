@@ -32,7 +32,25 @@ button {
   padding-right: 5%;
 }
 
+.table-container {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.table {
+  border-style: double;
+  border: 2px solid lightgrey;
+}
+
+
+.form-group {
+  padding-right: 3px;
+  padding-bottom: 3px;
+}
+
 form {
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-top: 3%;
+  padding-bottom: 2%;
+  padding-left: 7%;
+  padding-right: 7%;
 }

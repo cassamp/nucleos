@@ -4,6 +4,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import UpdateView, CreateView
 from .models import Client
 from .forms import ClientForm, ClientMultiForm
+from django_filters.views import FilterView
+from django_tables2.views import SingleTableMixin
+from .filters import ClientFilter
+from .tables import ClientTable
 from invoicexpress.services import ask_api
 
 
@@ -33,6 +37,19 @@ class ClientCreationView(LoginRequiredMixin, CreateView):
         })
 
         return redirect('home')
+
+
+class ClientListView(SingleTableMixin, FilterView):
+    model = Client
+    table_class = ClientTable
+    template_name = 'clients/list.html'
+    filterset_class = ClientFilter
+
+    def person_list(self, request):
+        table = ClientTable(Client.objects.all())
+        return render(request, "list.html", {
+            "table": table
+        })
 
 
 """ class ClientCreationView(UpdateView):
